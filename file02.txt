@@ -1,0 +1,11 @@
+Zaideju vardai: Antoska ir Petro
+Lazdeliu skaicius: 12
+Zaidima pradeda Petro
+Petro paima 3 lazdeles. Liko 9
+Antoska paima 2 lazdeles. Liko 7
+Petro paima 1 lazdeles. Liko 6
+Petro paima 3 lazdeles. Liko 3
+Antoska paima 2 lazdeles. Liko 1
+laimejo Antoska
+
+Pasirinko nebezaisti. zaista 1 kartu(s).

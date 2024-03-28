@@ -4,7 +4,7 @@
 # įvestą skaičių ir siūlo spėti dar kartą (tarkim „Sugeneruotas skaičius didesnis už 75. Atliksite 3 spėjimą...“). 
 # Įvedus bet kokius simbolius ar neigiamus skaičius programa prašo kartoti įvedimą ir jo neprisumuoja prie spėjimų 
 # skaičiaus. Vartotojui atspėjus skaičių rodomas pranešimas, koks buvo sugeneruotas skaičius ir kiek spėjimų buvo atlikta. 
-# Pabaigus žaidimą –siūloma sužaisti dar kartą. Žaidimo programavime panaudoti funkcijasBe žaidimo paslaugos programa 
+# Pabaigus žaidimą –siūloma sužaisti dar kartą. Žaidimo programavime panaudoti funkcijas. Be žaidimo paslaugos programa 
 # sukuria žaidimo „registravimo“ failą reg.txt, kuriame yra pateikiama informacija apie žaidimo eigą. 
 
 import random
@@ -13,7 +13,17 @@ with open("file01.txt", "w") as file:
     pass
 
 def spejimas():
-    n = int(input('ivesk sveika teig. sk.'))
+    while True:
+        try:
+            n = int(input('ivesk sveika teig. sk. '))
+            if n <= 0:
+                print('ivestas sk. turi buti teigiamas.')
+                continue
+            break
+        except ValueError:
+            print('netinkamas simbolis/skaicius. turi buti sveikas teigiamas skaicius.')
+
+        
     randNr = random.randint(1, n)
     with open("file01.txt", "a") as file:
         file.write(f'sugeneruotas skaicius {randNr}\n')
@@ -22,29 +32,33 @@ def spejimas():
     netinkNr = 0
 
     while True:
-        spejimuSk += 1
-        userSpejimas = int(input('koks spejimas? '))
-        if userSpejimas < 1 or userSpejimas > n:
-            netinkNr += 1
+        try:
+            spejimuSk += 1
+            userSpejimas = int(input('koks spejimas? '))
+            if userSpejimas < 1 or userSpejimas > n:
+                netinkNr += 1
+                spejimuSk -= 1
+                print('netinkamas numeris. bandyk darkart.')
+                with open("file01.txt", "a") as file:
+                    file.write(f'pasirinktas netinkamas numeris. useris trolina {netinkNr} kartu.\n')
+                continue
+            if userSpejimas == randNr:
+                with open("file01.txt", "a") as file:
+                    file.write(f'skaicius atspetas is {spejimuSk} kartu(s).\n\n')
+                print(f'sveikinimai! atspejote! bandymu: {spejimuSk}, netinkamu skaiciu bandymu: {netinkNr}')
+                break
+            if userSpejimas != randNr:
+                if userSpejimas > randNr:
+                    with open("file01.txt", "a") as file:
+                        file.write(f'neatspeta su {userSpejimas}. skaicius buvo mazesnis. spejimo nr: {spejimuSk}\n')
+                    print(f'neatspejote. sugeneruotas sk. mazesnis uz {userSpejimas}. cia buvo jusu {spejimuSk} spejimas.')
+                else:
+                    with open("file01.txt", "a") as file:
+                        file.write(f'neatspeta su {userSpejimas}. skaicius buvo didesnis. spejimo nr: {spejimuSk}\n')
+                    print(f'neatspejote. sugeneruotas sk. didesnis uz {userSpejimas}. cia buvo jusu {spejimuSk} spejimas.')
+        except ValueError:
+            print(f'netinkamas simbolis/skaicius. turi buti sveikas teigiamas skaicius, kuris tarp 1 ir {n}.')
             spejimuSk -= 1
-            print('netinkamas numeris. bandyk darkart.')
-            with open("file01.txt", "a") as file:
-                file.write(f'pasirinktas netinkamas numeris. useris trolina {netinkNr} kartu.\n')
-            continue
-        if userSpejimas == randNr:
-            with open("file01.txt", "a") as file:
-                file.write(f'skaicius atspetas is {spejimuSk} kartu(s).\n')
-            print(f'sveikinimai! atspejote! bandymu: {spejimuSk}, netinkamu skaiciu bandymu: {netinkNr}')
-            break
-        if userSpejimas != randNr:
-            if userSpejimas > randNr:
-                with open("file01.txt", "a") as file:
-                    file.write(f'neatspeta su {userSpejimas}. skaicius buvo mazesnis. spejimo nr: {spejimuSk}\n')
-                print(f'neatspejote. sugeneruotas sk. mazesnis uz {userSpejimas}. cia buvo jusu {spejimuSk} spejimas.')
-            else:
-                with open("file01.txt", "a") as file:
-                    file.write(f'neatspeta su {userSpejimas}. skaicius buvo didesnis. spejimo nr: {spejimuSk}\n')
-                print(f'neatspejote. sugeneruotas sk. didesnis uz {userSpejimas}. cia buvo jusu {spejimuSk} spejimas.')
 
 spejimas()
 
