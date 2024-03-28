@@ -1,0 +1,13 @@
+sugeneruotas skaicius 10
+neatspeta su 5. skaicius buvo didesnis. spejimo nr: 1
+neatspeta su 6. skaicius buvo didesnis. spejimo nr: 2
+neatspeta su 7. skaicius buvo didesnis. spejimo nr: 3
+neatspeta su 8. skaicius buvo didesnis. spejimo nr: 4
+neatspeta su 9. skaicius buvo didesnis. spejimo nr: 5
+skaicius atspetas is 6 kartu(s).
+sugeneruotas skaicius 11
+neatspeta su 7. skaicius buvo didesnis. spejimo nr: 1
+neatspeta su 8. skaicius buvo didesnis. spejimo nr: 2
+neatspeta su 9. skaicius buvo didesnis. spejimo nr: 3
+skaicius atspetas is 4 kartu(s).
+buvo zaista 2 kartu(s)
